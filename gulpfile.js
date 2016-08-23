@@ -18,7 +18,7 @@ elixir(function(mix) {
     mix.copy(npmDir + 'vue/dist/vue.min.js', jsDir);	
     mix.copy(npmDir + 'vue-resource/dist/vue-resource.min.js', jsDir);
     mix.copy(npmDir + 'vue-validator/dist/vue-validator.js', jsDir);
-    mix.copy('public/js/script.js', jsDir);
+    //mix.copy('public/js/script.js', jsDir);
     mix.scripts(['vue.min.js', 'vue-resource.min.js', 'vue-validator.js', 'script.js'], 
     	'public/js/vendor.js');
 });

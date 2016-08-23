@@ -2654,7 +2654,7 @@ var vm = new Vue({
 			address: ''
 		},
 
-		success: false,
+		success: 0,
 		edit: false
 	},
 
@@ -2680,12 +2680,12 @@ var vm = new Vue({
 
 			this.newUser = { id: '', name: '', email: '', address: ''}
 
-			this.$http.patch('/api/users/' + id, user, function (data) {
-				
+			this.$http.patch('/api/users/' + id, user).then(function(response){
+				this.fetchUser ()
 			})
 
-			this.fetchUser ()
-			console.log(this.fetchUser())
+			
+			
 
 
 			this.edit = false
@@ -2713,15 +2713,19 @@ var vm = new Vue({
 			this.newUser = { name:'', email:'', address:''}
 			
 			//Send Post request
-			this.$http.post('/api/users', user ) 
+			this.$http.post('/api/users', user ).then(function(response){
+				this.success = 1
+				this.fetchUser () //reload page
+			}, function(response){
+				console.log('error', response.data)
+				this.success = -1
+
+			}) 
 			
-			//reload page
-			this.fetchUser ()
-			console.log(this.fetchUser())
 
 			// Show success message
 			self = this
-			this.success = true
+			
 			setTimeout(function () {
 				self.success = false
 			}, 5000)

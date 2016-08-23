@@ -7,9 +7,10 @@ Route::get('/api/users', function() {
 	return App\User::all();
 });
 
-Route::post('/api/users', function() {
+/*Route::post('/api/users', function() {
 	return App\User::create(Request::all());
-});
+});*/
+Route::post('/api/users', 'UserController@create');
 
 Route::get('/api/users/{id}', function($id) {
 	return App\User::findOrFail($id);

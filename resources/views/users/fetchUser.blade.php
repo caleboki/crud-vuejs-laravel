@@ -6,19 +6,19 @@
 		<form action="#" @submit.prevent="AddNewUser" method="POST">
 
 			<div class="form-group">
-				<li class="alert alert-danger" v-if="$validation1.name.touched &&$validation1.name.required">Name field is required</li>
+				<li class="alert alert-danger" v-if="$validation1.name.dirty &&$validation1.name.required">Name field is required</li>
 				<label for="name">Name:</label>
 				<input v-model="newUser.name" type="text" v-validate:name="['required']" id="name" name="name" class="form-control">
 			</div>
 
 			<div class="form-group">
-				<li class="alert alert-danger" v-if="$validation1.email.touched && !$validation.email">Enter a valid Email</li>{{-- Custom validator here--}} 
+				<li class="alert alert-danger" v-if="$validation1.email.dirty && !validation.email">Enter a valid Email</li>{{-- Custom validator here--}} 
 				<label for="email">Email:</label>
 				<input v-model="newUser.email" type="text" v-validate:email="{ required:true }" id="email" name="email" class="form-control">
 			</div>
 
 			<div class="form-group">
-				<li class="alert alert-danger" v-if="$validation1.address.touched &&$validation1.address.required">Address field is required</li>
+				<li class="alert alert-danger" v-if="$validation1.address.dirty &&$validation1.address.required">Address field is required</li>
 				<label for="address">Address:</label>
 				<input v-model="newUser.address" type="text" v-validate:address="['required']" id="address" name="address" class="form-control">
 			</div>
@@ -30,7 +30,8 @@
 		</form>
 	</validator>
 
-		<div class="alert alert-success" transition="success" v-if="success">Add new user successful</div>
+		<div class="alert alert-success" transition="success" v-if="success == 1">Add new user successful</div>
+		<div class="alert alert-danger" transition="success" v-if="success == -1">Error: Email already taken</div>
 		<table class="table">
 			<thead>
 				<th>ID</th>
