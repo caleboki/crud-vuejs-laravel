@@ -1,5 +1,5 @@
 
-A CRUD app using Laravel 5 and Vue.js
+A CRUD app using Laravel 5.2 and Vue.js
 
 USAGE
 
